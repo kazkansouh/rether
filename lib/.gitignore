@@ -1,0 +1,26 @@
+/Makefile.am
+/base64.c
+/base64.h
+/memchr.c
+/memchr.valgrind
+/stdbool.in.h
+/stddef.in.h
+/string.in.h
+
+# http://www.gnu.org/software/automake
+
+Makefile.in
+/ar-lib
+/mdate-sh
+/py-compile
+/test-driver
+/ylwrap
+/Makefile
+
+/.deps/
+
+
+/arg-nonnull.h
+/c++defs.h
+/string.h
+/warn-on-use.h

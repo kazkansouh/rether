@@ -9,10 +9,12 @@ AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
+gl_EARLY
 
 # Checks for libraries.
 
 # Checks for header files.
+gl_INIT
 
 # Checks for typedefs, structures, and compiler characteristics.
 
@@ -21,5 +23,5 @@ AC_PROG_CC
 # Setup global CFLAGS
 CFLAGS="${CFLAGS} -Wall -Wpedantic -Werror -std=c11"
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile lib/Makefile])
 AC_OUTPUT

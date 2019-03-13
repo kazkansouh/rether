@@ -15,17 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-
 #if defined(HAVE_CONFIG_H)
  #include "config.h"
 #else
  #define PACKAGE_STRING "rether ?"
 #endif
 
+#include <stdio.h>
+#include "base64.h"
+
 #define AUTHOR "Karim Kanso"
 #define YEAR "2019"
 
+const char b64[] = "aGVsbG8gd29ybGQK";
+
 int main(int argc, char** argv) {
   printf(PACKAGE_STRING " - Copyright (C) " YEAR " " AUTHOR "\n");
+
+  char buff[1024];
+  size_t buff_len = sizeof(buff);
+  if (!base64_decode(b64, sizeof(b64) - 1, buff, &buff_len)) {
+    fprintf(stderr, "Unable to decode b64\n");
+  } else {
+    printf("result: %s", buff);
+  }
+  return 0;
 }
