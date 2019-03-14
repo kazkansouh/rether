@@ -18,7 +18,7 @@ COPY . /rether
 RUN cd rether && \
         /gnulib/gnulib-tool --update && \
         autoreconf -ivf && \
-        ./configure --disable-dependency-tracking --prefix=/usr && \
+        ./configure --disable-dependency-tracking --prefix=/usr CFLAGS="-O2" && \
         make && \
         make install
 
