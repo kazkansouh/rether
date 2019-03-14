@@ -12,6 +12,9 @@ AC_PROG_CC
 gl_EARLY
 
 # Checks for libraries.
+PKG_CHECK_MODULES([POPT], [popt])
+AC_SUBST([POPT_CFLAGS])
+AC_SUBST([POPT_LIBS])
 
 # Checks for header files.
 gl_INIT

@@ -6,4 +6,6 @@ LDADD = lib/libgnu.a
 
 bin_PROGRAMS = rether
 
-rether_SOURCES = main.c
+rether_CFLAGS = $(POPT_CFLAGS)
+rether_LDFLAGS = $(POPT_LIBS)
+rether_SOURCES = args.c send.c receive.c main.c

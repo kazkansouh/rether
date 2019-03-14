@@ -22,22 +22,39 @@
 #endif
 
 #include <stdio.h>
-#include "base64.h"
+
+#include "args.h"
+#include "send.h"
+#include "receive.h"
 
 #define AUTHOR "Karim Kanso"
 #define YEAR "2019"
 
-const char b64[] = "aGVsbG8gd29ybGQK";
-
-int main(int argc, char** argv) {
+int main(int argc, const char** argv) {
   printf(PACKAGE_STRING " - Copyright (C) " YEAR " " AUTHOR "\n");
 
-  char buff[1024];
-  size_t buff_len = sizeof(buff);
-  if (!base64_decode(b64, sizeof(b64) - 1, buff, &buff_len)) {
-    fprintf(stderr, "Unable to decode b64\n");
-  } else {
-    printf("result: %s", buff);
+  /* Parse command line arguments */
+  if (!args_parse(argc, argv)) {
+    return 1;
   }
+  printf("Running with config:\n"
+         "\tSource Interface: %s\n"
+         "\tEtherType: %04X\n",
+         gpch_source_interface,
+         gui_ethertype);
+
+  if (gb_receive) {
+    printf("\tMode: Receive\n");
+    receive();
+  } else {
+    printf("\tMode: Send\n"
+           "\tDestination LLA: %02X:%02X:%02X:%02X:%02X:%02X\n"
+           "\tPayload length: %zu\n",
+           gui_destmac[0], gui_destmac[1], gui_destmac[2],
+           gui_destmac[3], gui_destmac[4], gui_destmac[5],
+           gz_data);
+    send_one_shot();
+  }
+
   return 0;
 }
