@@ -58,8 +58,8 @@ uint8_t gui_destmac[] = {
   DEFAULT_DEST_5 ,
 };
 char gpch_source_interface[IFNAMSIZ] = {0};
-bool gb_base64 = false;
-bool gb_receive = false;
+int gb_base64 = false;
+int gb_receive = false;
 size_t gz_data = 0;
 uint8_t *gui_data = NULL;
 
